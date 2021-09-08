@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import constraints
+# from django.db.models import constraints
 
 # Create your models here.
 class Show(models.Model):
@@ -10,11 +10,11 @@ class Show(models.Model):
     summary: models.TextField()
     rating: models.PositiveIntegerField(null=True)
     photo_url: models.TextField()
-    
-class Meta:
-    constraints = [
-        models.CheckConstraint(
-            name="%(app_label)s_%(class)s_rating_range",
-            check=models.Q(page_count__range=(0, 10)),
-        ),
-    ]
+
+# class Meta:
+#     constraints = [
+#         models.CheckConstraint(
+#             name="%(app_label)s_%(class)s_rating_range",
+#             check=models.Q(page_count__range=(0, 10)),
+#         ),
+#     ]
