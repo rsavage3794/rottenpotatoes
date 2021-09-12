@@ -1,10 +1,12 @@
 import React from 'react'
+import potato from '../../rotten_potato.png'
+import './HomePage.css'
 
 const HomePage = () => {
     return (
         <div>
             <h1>Rotten Potatoes</h1>
-            <img src={require ('../../rotten_potato.svg')} alt="Rotten Potatoes Logo" />
+            <img src={potato} class="logo" alt="Rotten Potatoes Logo" />
         </div>
     )
 }
