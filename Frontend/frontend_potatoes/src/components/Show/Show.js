@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
+import './Show.css'
 
 const List = () => {
     const [showsData, setShowsData] = useState([])

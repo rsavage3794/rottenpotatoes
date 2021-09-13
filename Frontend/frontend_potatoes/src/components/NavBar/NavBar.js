@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import HomePage from '../HomePage/HomePage';
 import App from '../../App';
-import List from '../List/List';
+import List from '../Show/Show';
 import './NavBar.css'
 import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
