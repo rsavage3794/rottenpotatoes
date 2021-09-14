@@ -18,7 +18,7 @@ const View = () => {
     <Router>
         <div>
             <nav>
-                <Link to="/shows/:id">
+                {/* <Link to="/shows/:id">
                 <h2>{showsData.photo_url}</h2>
                 <h2>{showsData.title}</h2>
                 <h2>{showsData.genre}</h2>
@@ -26,11 +26,11 @@ const View = () => {
                 <h2>{showsData.notable_actors}</h2>
                 <h2>{showsData.summary}</h2>
                 <h2>{showsData.rating}</h2>
-                </Link>
+                </Link> */}
             </nav>
-            <main>
+            {/* <main>
                 <Route exact path="/shows/:id" component={Show}  />
-            </main>
+            </main> */}
         </div>
     </Router>
     )
