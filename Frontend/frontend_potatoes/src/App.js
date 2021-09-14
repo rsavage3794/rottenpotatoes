@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState, Link } from 'react';
 import NavBar from './components/NavBar/NavBar';
+import { Route } from 'react-router-dom'
+import View from './components/View/View';
 
 function App() {
   const [showsData, setShowsData] = useState([])
@@ -14,11 +16,14 @@ function App() {
   return (
     <div>
     <NavBar />
-    {/* <ul>
-    {showsData.map(item => {
-      return (<li>{item.title}</li>)
-    })}
-    </ul> */}
+      <nav>
+        <Link to="/shows/:id"></Link>
+      </nav>
+      <main>
+        <Route exact path="/shows/:id" render={routerProps => (
+          <View showsData={showsData} match={routerProps.match} title = {title} />
+        )}></Route>
+      </main>
     </div>
   );
 }
