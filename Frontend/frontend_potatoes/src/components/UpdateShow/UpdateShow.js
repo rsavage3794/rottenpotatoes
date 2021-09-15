@@ -5,9 +5,13 @@ import { baseURL, headers } from "./../services/show.service";
 export const UpdateShow = () => {
   const initialShowState = {
     id: null,
-    name: "",
-    description: "",
-    price: 0,
+    title: "",
+    notable_actors: "",
+    network: "",
+    genre: "",
+    summary: "",
+    rating: 0,
+    photo_url: "",
   };
   let { id } = useParams();
   const [currentShow, setCurrentShow] = useState(initialShowState);
@@ -30,9 +34,13 @@ export const UpdateShow = () => {
       .then((response) => {
         setCurrentShow({
           id: response.data.id,
-          name: response.data.name,
-          description: response.data.description,
-          price: response.data.price,
+          title: response.data.title,
+          notable_actors: response.data.notable_actors,
+          network: response.data.network,
+          genre: response.data.genre,
+          summary: response.data.summary,
+          rating: response.data.rating,
+          photo_url: response.data.photo_url
         });
         console.log(currentShow);
       })

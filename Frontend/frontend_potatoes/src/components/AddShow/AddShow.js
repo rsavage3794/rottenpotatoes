@@ -17,7 +17,7 @@ const AddShow = () => {
   const [submitted, setSubmitted] = useState(false);
   const handleShowChange = (e) => {
     const { title, value } = e.target;
-    setMenu({ ...show, [title]: value });
+    setShow({ ...show, [title]: value });
   };
   const submitShow = () => {
     let data = {
