@@ -5,6 +5,7 @@ import List from '../Show/Show';
 import './NavBar.css'
 import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import View from '../View/View';
+import Add from '../AddShow/AddShow'
 
 const NavBar = () => {
     return (
@@ -17,6 +18,7 @@ const NavBar = () => {
             <main>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/shows" component={List} />
+                <Route exact path="/shows/add" component={Add} />
                 <Route 
                     exact path="/shows/:id" 
                     render={routerProps => (
