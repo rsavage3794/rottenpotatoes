@@ -1,6 +1,6 @@
 nav {
-    display: inline;
-    font-weight: bold;
     display: flex;
-    padding:
+    font-weight: bold;
+    justify-content: space-around;
+    padding: 15px 0 0 0;
 }

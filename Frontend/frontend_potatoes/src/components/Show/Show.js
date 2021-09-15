@@ -1,11 +1,12 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import './Show.css'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
+import View from '../View/View';
 
 const List = () => {
     const [showsData, setShowsData] = useState([])
-    const url = "http://localhost:8000/api/rotten_potatoes/shows"
+    const url = "http://localhost:8000/api/rotten_potatoes/"
     useEffect(() => {
       fetch(url).then(res => res.json()).then(data => {
         console.log(data)
@@ -13,15 +14,21 @@ const List = () => {
       })
     }, [])
     return (
-        <div>
+      <div>
+         {/* <nav>
+             <Link to={"/shows/"+ item.id}>
+             </Link>
+         </nav> */}
             <ul>
             {showsData.map(item => {
-              // return (<h1>Test</h1>)
-                return (<li key = {item.title}><Link to="/shows/:id">{item.title}</Link></li>)
-                
+              return (<li key = {item.title}>
+                <Link to={`/shows/${item.id}`}>{item.title}</Link></li>) 
             })}
             </ul>
-        </div>
+          <main>
+             <Route exact path="/shows/:id" component={View} />
+          </main>
+      </div>
     )
 }
 

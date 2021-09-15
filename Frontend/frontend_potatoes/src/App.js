@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import View from './components/View/View';
 import HomePage from './components/HomePage/HomePage';
@@ -18,11 +18,11 @@ function App() {
   return (
     <div>
     <NavBar />
-      <nav>
+      {/* <nav>
         <Link to="/shows"></Link>
         <Link to="/shows/:id"></Link>
       </nav>
-      <main>
+      <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shows" component={Show} />
         <Route 
@@ -30,7 +30,7 @@ function App() {
           render={routerProps => (
           <View setShowsData={setShowsData} match={routerProps.match} showsData = {showsData} />
         )}/>
-      </main>
+      </Switch> */}
     </div>
   );
 }

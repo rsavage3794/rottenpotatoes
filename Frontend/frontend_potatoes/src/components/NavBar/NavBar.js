@@ -17,7 +17,11 @@ const NavBar = () => {
             <main>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/shows" component={List} />
-                <Route exact path="/shows/:id" component={View} />
+                <Route 
+                    exact path="/shows/:id" 
+                    render={routerProps => (
+                    <View match={routerProps.match} />
+                )}/>
             {/* <Route exact path="/movies" render={ () => < Home movies={movies}/>} />
             <Route exact path="/movies:episode_number" render={ routerProps => <Movie match={routerProps.match} movies={movies}/>} /> */}
             </main>
