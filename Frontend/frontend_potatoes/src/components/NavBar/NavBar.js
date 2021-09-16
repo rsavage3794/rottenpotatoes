@@ -14,6 +14,7 @@ const NavBar = () => {
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/shows">Your Shows</Link>
+                <Link to="/shows/add">Add Show</Link>
             </nav>
             <main>
                 <Route exact path="/" component={HomePage} />

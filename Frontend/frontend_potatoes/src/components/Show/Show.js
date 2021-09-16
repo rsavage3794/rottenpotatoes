@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import './Show.css'
 import { Link, Route } from 'react-router-dom'
 import View from '../View/View';
+import { UpdateShow } from '../UpdateShow/UpdateShow';
 
 const List = () => {
     const [showsData, setShowsData] = useState([])
@@ -32,6 +33,7 @@ const List = () => {
             </ul>
           <main>
              <Route exact path="/shows/:id" component={View} />
+             <Route exact path="/shows/:id/edit" component={UpdateShow} />
           </main>
       </div>
     )

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import { UpdateShow } from '../UpdateShow/UpdateShow'
 const multer = require('multer')
 // const upload = multer({dest:'uploads/'})
 
@@ -23,6 +24,14 @@ const View = ({match}) => {
                 <h3>Notable Actors: {showsData.notable_actors}</h3>
                 <h3>Plot Summary: {showsData.summary}</h3>
                 <h3>Your Rating (out of 10): {showsData.rating}</h3>
+                <nav>
+                  <Link to={`shows/${showsData.id}/edit`}>Edit</Link>
+                  <Link to={`shows/${showsData.id}/delete`}>Delete</Link>
+                </nav>
+                <main>
+                  <Route exact path="/shows/:id/edit" component={UpdateShow} />
+                  {/* <Route exact path="/shows/:id/delete" component= /> */}
+                </main>
         </div>
     )
 }
