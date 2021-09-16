@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { baseURL, headers } from "./../services/show.service";
+import { baseURL, headers } from "../../services/show.service";
 
 const AddShow = () => {
   const initialShowState = {
@@ -30,9 +30,9 @@ const AddShow = () => {
       photo_url: show.photo_url
     };
     axios
-      .post(`${baseURL}/shows/`, data, {
+      .post(`${baseURL}/shows/add`, data, {
         headers: {
-          headers,
+            "Content-type": "application.json",
         },
       })
       .then((response) => {
@@ -54,6 +54,7 @@ const AddShow = () => {
       });
   };
   const newShow = () => {
+    submitShow()
     setShow(initialShowState);
     setSubmitted(false);
   };
@@ -88,7 +89,6 @@ return (
                   className="form-control"
                   id="title"
                   required
-                  value={show.title}
                   onChange={handleShowChange}
                   name="title"
                 />
@@ -99,8 +99,7 @@ return (
                   type="text"
                   className="form-control"
                   id="notable_actors"
-                  required
-                  value={show.notable_actors}
+                  require
                   onChange={handleShowChange}
                   name="notable_actors"
                 />
@@ -112,7 +111,6 @@ return (
                   className="form-control"
                   id="network"
                   required
-                  value={show.network}
                   onChange={handleShowChange}
                   name="network"
                 />
@@ -124,7 +122,6 @@ return (
                   className="form-control"
                   id="genre"
                   required
-                  value={show.genre}
                   onChange={handleShowChange}
                   name="genre"
                 />
@@ -136,7 +133,6 @@ return (
                   className="form-control"
                   id="summary"
                   required
-                  value={show.summary}
                   onChange={handleShowChange}
                   name="summary"
                 />
@@ -148,7 +144,6 @@ return (
                   className="form-control"
                   id="rating"
                   required
-                  value={show.rating}
                   onChange={handleShowChange}
                   name="rating"
                 />
@@ -160,7 +155,6 @@ return (
                   className="form-control"
                   id="photo_url"
                   required
-                  value={show.photo_url}
                   onChange={handleShowChange}
                   name="photo_url"
                 />

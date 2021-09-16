@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { useEffect, useState } from 'react';
 import './Show.css'
 import { Link, Route } from 'react-router-dom'
@@ -8,10 +9,14 @@ const List = () => {
     const [showsData, setShowsData] = useState([])
     const url = "http://localhost:8000/api/rotten_potatoes/"
     useEffect(() => {
-      fetch(url).then(res => res.json()).then(data => {
-        console.log(data)
-        setShowsData(data)
+      axios.get(url).then(res => {
+        console.log(res.data);
+        setShowsData(res.data)
       })
+      // fetch(url, {headers:{'Access-Control-Allow-Origin':'*'}}).then(res => res.json()).then(data => {
+      //   console.log(data)
+      //   setShowsData(data)
+      // })
     }, [])
     return (
       <div>

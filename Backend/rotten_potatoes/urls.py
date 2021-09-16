@@ -1,23 +1,42 @@
 from django.urls import path
 from . import views
-from django.conf.urls.static import static
+from rest_framework import routers
+# from django.conf.urls.static import static
+
+router = routers.DefaultRouter()
+router.register(r'shows',views.RottenPotatoViewSet)  
 
 urlpatterns = [
-    # path('artists/', views.ArtistList.as_view(), name='artist_list'),
-    # path('artists/<int:pk>', views.ArtistDetail.as_view(), name='artist_detail'),
+    path('shows/', views.ShowsList.as_view(), name='show_list'),
+    path('shows/<int:pk>', views.ShowDetail.as_view(), name='show_detail'),
+    path('shows/add', views.show_create, name='show_create'),
+    path('shows/<int:pk>', views.show_detail, name='show_detail'),
+    path('shows/<int:pk>/edit', views.show_edit, name='show_edit'),
+    path('shows/<int:pk>/delete', views.show_delete, name='show_delete'),
 
-    # path('songs/', views.SongList.as_view(), name='song_list'),
-    # path('songs/<int:pk>', views.SongDetail.as_view(), name='song_detail'),
+    path('', views.dash, name='dash'),
+    path('api/', include(router.urls))
+]
 
-    # path('albums/', views.AlbumList.as_view(), name='album_list'),
-    # path('albums/<int:pk>', views.AlbumDetail.as_view(), name='album_detail'),
-    
-    # path('', views.artist_list, name='artist_list'),
-    # path('songs/', views.song_list, name='song_list'),
-    # path('artists/new', views.artist_create, name='artist_create'),
-    # path('artists/<int:pk>', views.artist_detail, name='artist_detail'),
-    # path('artists/<int:pk>/edit', views.artist_edit, name='artist_edit'),
-    # path('artists/<int:pk>/delete', views.artist_delete, name='artist_delete'),
-    # path('songs/<int:pk>', views.song_detail, name='song_detail'),
-    # path('kitchensink/', views.artist_and_songs_list, name='kitchensink')
+
+
+
+# router = routers.DefaultRouter()
+# router.register(r'users',views.UserViewSet)
+# router.register(r'instances',views.InstanceList)                                                                            
+
+# urlpatterns = [ 
+#     path('', views.dash, name='dash'),
+#     path('api/', include(router.urls)),
+# ]
+
+
+
+
+                                                                       
+
+# urlpatterns = [ 
+#     path('', views.dash, name='dash'),
+#     path('api/', include(router.urls)),
+#     path('api/shows/', views.ShowList.as_view(), name="shows"),
 ]

@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { baseURL, headers } from "./../services/show.service";
-export const UpdateShow = () => {
-  const initialShowState = {
+export const UpdateShow = ({match}) => {
+    const initialShowState = {
     id: null,
     title: "",
     notable_actors: "",
