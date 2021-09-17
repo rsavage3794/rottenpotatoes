@@ -14,34 +14,34 @@ export const UpdateShow = ({match}) => {
     photo_url: "",
   };
   let { id } = useParams();
-  const [currentShow, setCurrentShow] = useState(initialShowState);
+  const [currentShow, setCurrentShow] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const countRef = useRef(0);
+//   const countRef = useRef(0);
   useEffect(() => {
     retrieveShow();
-  }, [countRef]);
+  }, []);
   const handleShowChange = (e) => {
     const { title, value } = e.target;
     setCurrentShow({ ...currentShow, [title]: value });
   };
   const retrieveShow = () => {
     axios
-      .get(`${baseURL}/shows/${id}/`, {
+      .get(`http://localhost:8000/shows/${id}/`, {
         headers: {
           headers,
         },
       })
       .then((response) => {
-        setCurrentShow({
-          id: response.data.id,
-          title: response.data.title,
-          notable_actors: response.data.notable_actors,
-          network: response.data.network,
-          genre: response.data.genre,
-          summary: response.data.summary,
-          rating: response.data.rating,
-          photo_url: response.data.photo_url
-        });
+        setCurrentShow(response.data);
+        //   id: response.data.id,
+        //   title: response.data.title,
+        //   notable_actors: response.data.notable_actors,
+        //   network: response.data.network,
+        //   genre: response.data.genre,
+        //   summary: response.data.summary,
+        //   rating: response.data.rating,
+        //   photo_url: response.data.photo_url
+    
         console.log(currentShow);
       })
       .catch((e) => {
@@ -59,22 +59,22 @@ export const UpdateShow = ({match}) => {
       photo_url: currentShow.photo_url
     };
     axios
-      .put(`${baseURL}/shows/${id}/edit`, data, {
+      .put(`${baseURL}/${id}/edit`, data, {
         headers: {
           headers,
         },
       })
       .then((response) => {
-        setCurrentShow({
-          id: response.data.id,
-          title: response.data.title,
-          notable_actors: response.data.notable_actors,
-          network: response.data.network,
-          genre: response.data.genre,
-          summary: response.data.summary,
-          rating: response.data.rating,
-          photo_url: response.data.photo_url
-        });
+        setCurrentShow(response.data);
+        //   id: response.data.id,
+        //   title: response.data.title,
+        //   notable_actors: response.data.notable_actors,
+        //   network: response.data.network,
+        //   genre: response.data.genre,
+        //   summary: response.data.summary,
+        //   rating: response.data.rating,
+        //   photo_url: response.data.photo_url
+        // });
         setSubmitted(true);
         console.log(response.data);
       })

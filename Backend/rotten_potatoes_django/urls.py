@@ -24,5 +24,6 @@ router.register(r'rotten_potatoes', views.RottenPotatoView, 'rotten_potatoes')
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api/', include(router.urls)),
-    path('', include('rotten_potatoes.urls')),            
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include('rotten_potatoes.urls')),           
 ]

@@ -25,10 +25,10 @@ const NavBar = () => {
             </div>
             <main>
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/shows" component={List} />
-                <Route exact path="/shows/add" component={Add} />
+                <Route exact path="/shows/" component={List} />
+                <Route exact path="/shows/add/" component={Add} />
                 <Route 
-                    exact path="/shows/:id" 
+                    exact path="/shows/:id/" 
                     render={routerProps => (
                     <View match={routerProps.match} />
                 )}/>

@@ -7,7 +7,7 @@ const multer = require('multer')
 
 const View = ({match}) => {
     const [showsData, setShowsData] = useState([])
-    const url = `http://localhost:8000/shows/${match.params.id}`
+    const url = `http://localhost:8000/shows/${match.params.id}/`
     useEffect(() => {
         console.log(match)
       fetch(url).then(res => res.json()).then(data => {
@@ -17,7 +17,7 @@ const View = ({match}) => {
     }, [])
     return (
         <div>
-                <img src={showsData.data.illustration.photo_url} alt={showsData.photo_url} />
+                <img src={showsData.photo_url} alt={showsData.photo_url} />
                 <h3>Title: {showsData.title}</h3>
                 <h3>Genre: {showsData.genre}</h3>
                 <h3>Network: {showsData.network}</h3>
@@ -25,12 +25,17 @@ const View = ({match}) => {
                 <h3>Plot Summary: {showsData.summary}</h3>
                 <h3>Your Rating (out of 10): {showsData.rating}</h3>
                 <nav>
-                  <Link to={`shows/${showsData.id}/edit`}>Edit</Link>
+                  <Link to={`${showsData.id}/edit`}>Edit</Link>
                   <Link to={`shows/${showsData.id}/delete`}>Delete</Link>
                 </nav>
                 <main>
-                  <Route exact path="/shows/:id/edit" component={UpdateShow} />
-                  {/* <Route exact path="/shows/:id/delete" component= /> */}
+                  {/* <Route exact path="/:id/edit" component={UpdateShow} /> */}
+                  <Route 
+                    exact path="/shows/:id/edit" 
+                    render={routerProps => (
+                    <UpdateShow match={routerProps.match} />
+                )}/>
+                  <Route exact path="/:id/delete" />
                 </main>
         </div>
     )

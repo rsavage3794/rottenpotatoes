@@ -10,14 +10,6 @@ class Show(models.Model):
     genre = models.CharField(max_length=100)
     summary = models.TextField()
     rating = models.DecimalField(default=0, validators=[MinValueValidator(1), MaxValueValidator(10)], decimal_places=1, max_digits=3)
-    photo_url = models.ImageField()
+    photo_url = models.ImageField(default='')
     def __str__(self):
         return self.title
-
-# class Meta:
-#     constraints = [
-#         models.CheckConstraint(
-#             name="%(app_label)s_%(class)s_rating_range",
-#             check=models.Q(page_count__range=(0, 10)),
-#         ),
-#     ]

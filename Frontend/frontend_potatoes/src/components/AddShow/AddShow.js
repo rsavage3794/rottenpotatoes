@@ -30,7 +30,7 @@ const AddShow = () => {
       photo_url: show.photo_url
     };
     axios
-      .post(`${baseURL}/shows/add`, data, {
+      .post(`${baseURL}`, data, {
         headers: {
             "Content-type": "application.json",
         },

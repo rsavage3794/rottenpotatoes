@@ -8,7 +8,7 @@ import { UpdateShow } from '../UpdateShow/UpdateShow';
 
 const List = () => {
     const [showsData, setShowsData] = useState([])
-    const url = "http://localhost:8000/api/rotten_potatoes/"
+    const url = "http://localhost:8000/shows"
     useEffect(() => {
       axios.get(url).then(res => {
         console.log(res.data);
