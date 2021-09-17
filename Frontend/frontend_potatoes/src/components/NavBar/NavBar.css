@@ -1,6 +1,11 @@
 nav {
-    display: flex;
-    font-weight: bold;
     justify-content: space-around;
+    display: flex;
+}
+
+.nav-bar {
+    background-color: white;
+    font-weight: bold;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 15px 0 0 0;
 }

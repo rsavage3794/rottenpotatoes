@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-image: url("couch.png");
+  background-color: white;
+  background-repeat: no-repeat;
+}

@@ -1,6 +1,6 @@
 from rest_framework import generics
 from . serializers import ShowSerializer
-from . models import Show
+from .models import Show
 # Create your views here.
   
 class RottenPotatoView(generics.ListCreateAPIView):  

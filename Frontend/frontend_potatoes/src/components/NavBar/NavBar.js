@@ -7,15 +7,22 @@ import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import View from '../View/View';
 import Add from '../AddShow/AddShow'
 
+const linkStyle = {
+    color: 'black',
+    // font-family: 'papyrus'
+}
+
 const NavBar = () => {
     return (
     <Router>
         <div>
-            <nav>
-                <Link to="/">Home</Link>
-                <Link to="/shows">Your Shows</Link>
-                <Link to="/shows/add">Add Show</Link>
-            </nav>
+            <div class="nav-bar">
+                <nav>
+                    <Link to="/" style={linkStyle}>Home</Link>
+                    <Link to="/shows" style={linkStyle}>Your Shows</Link>
+                    <Link to="/shows/add" style={linkStyle}>Add Show</Link>
+                </nav>
+            </div>
             <main>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/shows" component={List} />

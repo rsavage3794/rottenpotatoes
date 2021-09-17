@@ -10,7 +10,7 @@ class Show(models.Model):
     genre = models.CharField(max_length=100)
     summary = models.TextField()
     rating = models.DecimalField(default=0, validators=[MinValueValidator(1), MaxValueValidator(10)], decimal_places=1, max_digits=3)
-    photo_url = models.TextField()
+    photo_url = models.ImageField()
     def __str__(self):
         return self.title
 
