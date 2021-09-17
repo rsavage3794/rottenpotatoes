@@ -59,7 +59,7 @@ export const UpdateShow = ({match}) => {
       photo_url: currentShow.photo_url
     };
     axios
-      .put(`${baseURL}/shows/${id}/`, data, {
+      .put(`${baseURL}/shows/${id}/edit`, data, {
         headers: {
           headers,
         },

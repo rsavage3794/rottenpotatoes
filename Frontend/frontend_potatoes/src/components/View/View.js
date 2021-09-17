@@ -7,7 +7,7 @@ const multer = require('multer')
 
 const View = ({match}) => {
     const [showsData, setShowsData] = useState([])
-    const url = `http://localhost:8000/api/rotten_potatoes/${match.params.id}`
+    const url = `http://localhost:8000/shows/${match.params.id}`
     useEffect(() => {
         console.log(match)
       fetch(url).then(res => res.json()).then(data => {
