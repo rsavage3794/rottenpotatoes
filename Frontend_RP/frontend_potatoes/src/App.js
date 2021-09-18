@@ -7,9 +7,9 @@ import NavBar from './components/NavBar/NavBar';
 
 function App() {
   const [showsData, setShowsData] = useState([])
-  const url = "http://localhost:8000/api/rotten_potatoes/?format=json"
+  const url = "http://localhost:8000/shows/?format=json"
   useEffect(() => {
-    fetch(url, {headers:{'Access-Control-Allow-Origin':'*'}}).then(res => res.json()).then(data => {
+    fetch(url).then(res => res.json()).then(data => {
       setShowsData(data)
     })
   }, [])
