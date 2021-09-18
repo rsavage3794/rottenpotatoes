@@ -10,7 +10,10 @@ Rotten Potatoes is an app that allows users to track and rate all of the TV show
 #### List of Shows ![Screen Shot 3 - List of Shows](https://user-images.githubusercontent.com/62110552/133892779-3c2cf9c0-44ef-4855-9f81-81c61c820680.png)
 
 ## Code Styles
-- Python/Django
+- Python
+- Django
+- JavaScript
+- CSS
 - React
 
 ## Wireframes
