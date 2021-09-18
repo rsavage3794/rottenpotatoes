@@ -6,6 +6,7 @@ import './NavBar.css'
 import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import View from '../View/View';
 import Add from '../AddShow/AddShow'
+import { UpdateShow } from '../UpdateShow/UpdateShow';
 
 const linkStyle = {
     color: 'black',
@@ -32,6 +33,12 @@ const NavBar = () => {
                     render={routerProps => (
                     <View match={routerProps.match} />
                 )}/>
+                <Route 
+                    exact path="/shows/:id/edit" 
+                    render={routerProps => (
+                    <UpdateShow match={routerProps.match} />
+                )}/>
+                  <Route exact path="/:id/delete" />
             {/* <Route exact path="/movies" render={ () => < Home movies={movies}/>} />
             <Route exact path="/movies:episode_number" render={ routerProps => <Movie match={routerProps.match} movies={movies}/>} /> */}
             </main>

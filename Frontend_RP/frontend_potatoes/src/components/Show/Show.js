@@ -28,12 +28,12 @@ const List = () => {
             <ul>
             {showsData.map(item => {
               return (<li key = {item.title}>
-                <Link to={`/shows/${item.id}`}>{item.title}</Link></li>) 
+                <Link to={`/shows/${item.id}/`}>{item.title}</Link></li>) 
             })}
             </ul>
           <main>
-             <Route exact path="/shows/:id" component={View} />
-             <Route exact path="/shows/:id/edit" component={UpdateShow} />
+             <Route exact path="/shows/:id/" component={View} />
+             <Route exact path="/shows/:id/edit/" component={UpdateShow} />
           </main>
       </div>
     )

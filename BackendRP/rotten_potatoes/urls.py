@@ -11,7 +11,4 @@ router = DefaultRouter()
 urlpatterns = [
     path('shows/', views.RottenPotatoView.as_view(), name='show_list'),
     path('shows/<int:pk>/', views.RottenPotatoDetail.as_view(), name='show_detail'),
-    # path('shows/add', views.show_create, name='show_create'),
-    # path('shows/<int:pk>/edit', views.show_update, name='show_edit'),
-    # path('shows/<int:pk>/delete', views.show_destroy, name='show_delete'),
 ]

@@ -4,9 +4,6 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { Route, Link, Switch } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
-import View from './components/View/View';
-import HomePage from './components/HomePage/HomePage';
-import Show from './components/Show/Show'
 
 function App() {
   const [showsData, setShowsData] = useState([])

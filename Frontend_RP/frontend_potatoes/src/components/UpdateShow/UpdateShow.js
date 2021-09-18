@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 import { baseURL, headers } from "../../services/show.service";
-
-const AddShow = () => {
-  const initialShowState = {
+export const UpdateShow = ({match}) => {
+    const initialShowState = {
     id: null,
     title: "",
     notable_actors: "",
@@ -11,41 +11,70 @@ const AddShow = () => {
     genre: "",
     summary: "",
     rating: 0,
-    photo_url: ""
+    photo_url: "",
   };
-  const [show, setShow] = useState(initialShowState);
+  let { id } = useParams();
+  const [currentShow, setCurrentShow] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+//   const countRef = useRef(0);
+  useEffect(() => {
+    retrieveShow();
+  }, []);
   const handleShowChange = (e) => {
     const { title, value } = e.target;
-    setShow({ ...show, [title]: value });
+    setCurrentShow({ ...currentShow, [title]: value });
   };
-  const submitShow = () => {
-    let data = {
-      title: show.title,
-      notable_actors: show.notable_actors,
-      network: show.network,
-      genre: show.genre,
-      summary: show.summary,
-      rating: show.rating,
-      photo_url: show.photo_url
-    };
+  const retrieveShow = () => {
     axios
-      .post(`${baseURL}`, data, {
+      .get(`http://localhost:8000/shows/${id}/`, {
         headers: {
-            "Content-type": "application.json",
+          headers,
         },
       })
       .then((response) => {
-        setShow({
-          id: response.data.id,
-          title: response.data.title,
-          notable_actors: response.data.notable_actors,
-          network: response.data.network,
-          genre: response.data.genre,
-          summary: response.data.summary,
-          rating: response.data.rating,
-          photo_url: response.data.photo_url,
-        });
+        setCurrentShow(response.data);
+        //   id: response.data.id,
+        //   title: response.data.title,
+        //   notable_actors: response.data.notable_actors,
+        //   network: response.data.network,
+        //   genre: response.data.genre,
+        //   summary: response.data.summary,
+        //   rating: response.data.rating,
+        //   photo_url: response.data.photo_url
+    
+        console.log(currentShow);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+  const updateShow = () => {
+    let data = {
+      title: currentShow.title,
+      notable_actors: currentShow.notable_actors,
+      network: currentShow.network,
+      genre: currentShow.genre,
+      summary: currentShow.summary,
+      rating: currentShow.rating,
+      photo_url: currentShow.photo_url
+    };
+    axios
+      .put(`${baseURL}/${id}/edit/`, data, {
+        headers: {
+          headers,
+        },
+      })
+      .then((response) => {
+        setCurrentShow(response.data);
+        //   id: response.data.id,
+        //   title: response.data.title,
+        //   notable_actors: response.data.notable_actors,
+        //   network: response.data.network,
+        //   genre: response.data.genre,
+        //   summary: response.data.summary,
+        //   rating: response.data.rating,
+        //   photo_url: response.data.photo_url
+        // });
         setSubmitted(true);
         console.log(response.data);
       })
@@ -54,11 +83,10 @@ const AddShow = () => {
       });
   };
   const newShow = () => {
-    submitShow()
-    setShow(initialShowState);
+    setCurrentShow(initialShowState);
     setSubmitted(false);
   };
-return (
+  return (
     <div className="submit-form">
           {submitted ? (
             <div>
@@ -66,7 +94,7 @@ return (
                 className="alert alert-success alert-dismissible fade show"
                 role="alert"
               >
-                Show Added!
+                Show Updated!
                 <button
                   type="button"
                   className="close"
@@ -77,7 +105,7 @@ return (
                 </button>
               </div>
               <button className="btn btn-success" onClick={newShow}>
-                Add
+                Update
               </button>
             </div>
           ) : (
@@ -89,6 +117,7 @@ return (
                   className="form-control"
                   id="title"
                   required
+                  value={currentShow.title}
                   onChange={handleShowChange}
                   name="title"
                 />
@@ -99,9 +128,11 @@ return (
                   type="text"
                   className="form-control"
                   id="notable_actors"
-                  require
+                  required
+                  value={currentShow.notable_actors}
                   onChange={handleShowChange}
                   name="notable_actors"
+                  default
                 />
               </div>
               <div className="form-group">
@@ -111,8 +142,10 @@ return (
                   className="form-control"
                   id="network"
                   required
+                  value={currentShow.network}
                   onChange={handleShowChange}
                   name="network"
+                  default
                 />
               </div>
               <div className="form-group">
@@ -122,8 +155,10 @@ return (
                   className="form-control"
                   id="genre"
                   required
+                  value={currentShow.genre}
                   onChange={handleShowChange}
                   name="genre"
+                  default
                 />
               </div>
               <div className="form-group">
@@ -133,8 +168,10 @@ return (
                   className="form-control"
                   id="summary"
                   required
+                  value={currentShow.summary}
                   onChange={handleShowChange}
                   name="summary"
+                  default
                 />
               </div>
               <div className="form-group">
@@ -144,8 +181,10 @@ return (
                   className="form-control"
                   id="rating"
                   required
+                  value={currentShow.rating}
                   onChange={handleShowChange}
                   name="rating"
+                  default
                 />
               </div>
               <div className="form-group">
@@ -155,11 +194,12 @@ return (
                   className="form-control"
                   id="photo_url"
                   required
+                  value={currentShow.photo_url}
                   onChange={handleShowChange}
                   name="photo_url"
                 />
               </div>
-              <button onClick={submitShow} className="btn btn-success">
+              <button onClick={updateShow} className="btn btn-success">
                 Submit
               </button>
             </div>
@@ -167,5 +207,3 @@ return (
         </div>
   );
 };
-
-export default AddShow;

@@ -17,7 +17,7 @@ const View = ({match}) => {
     }, [])
     return (
         <div>
-                <img src={showsData.photo_url} alt={showsData.photo_url} />
+                <h3><img src={showsData.photo_url} alt={showsData.photo_url} /></h3>
                 <h3>Title: {showsData.title}</h3>
                 <h3>Genre: {showsData.genre}</h3>
                 <h3>Network: {showsData.network}</h3>

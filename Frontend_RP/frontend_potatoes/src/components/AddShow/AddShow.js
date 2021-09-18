@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import { baseURL, headers } from "../../services/show.service";
-export const UpdateShow = ({match}) => {
-    const initialShowState = {
+
+const AddShow = () => {
+  const initialShowState = {
     id: null,
     title: "",
     notable_actors: "",
@@ -11,70 +11,42 @@ export const UpdateShow = ({match}) => {
     genre: "",
     summary: "",
     rating: 0,
-    photo_url: "",
+    photo_url: ""
   };
-  let { id } = useParams();
-  const [currentShow, setCurrentShow] = useState([]);
+  const [show, setShow] = useState(initialShowState);
   const [submitted, setSubmitted] = useState(false);
-//   const countRef = useRef(0);
-  useEffect(() => {
-    retrieveShow();
-  }, []);
   const handleShowChange = (e) => {
     const { title, value } = e.target;
-    setCurrentShow({ ...currentShow, [title]: value });
+    setShow({ ...show, [title]: value });
   };
-  const retrieveShow = () => {
-    axios
-      .get(`http://localhost:8000/shows/${id}/`, {
-        headers: {
-          headers,
-        },
-      })
-      .then((response) => {
-        setCurrentShow(response.data);
-        //   id: response.data.id,
-        //   title: response.data.title,
-        //   notable_actors: response.data.notable_actors,
-        //   network: response.data.network,
-        //   genre: response.data.genre,
-        //   summary: response.data.summary,
-        //   rating: response.data.rating,
-        //   photo_url: response.data.photo_url
-    
-        console.log(currentShow);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
-  const updateShow = () => {
+  const submitShow = () => {
     let data = {
-      title: currentShow.title,
-      notable_actors: currentShow.notable_actors,
-      network: currentShow.network,
-      genre: currentShow.genre,
-      summary: currentShow.summary,
-      rating: currentShow.rating,
-      photo_url: currentShow.photo_url
+      title: show.title,
+      notable_actors: show.notable_actors,
+      network: show.network,
+      genre: show.genre,
+      summary: show.summary,
+      rating: show.rating,
+      photo_url: show.photo_url
     };
     axios
-      .put(`${baseURL}/${id}/edit`, data, {
+      .post(`${baseURL}`, data, {
         headers: {
-          headers,
+            headers,
         },
       })
       .then((response) => {
-        setCurrentShow(response.data);
-        //   id: response.data.id,
-        //   title: response.data.title,
-        //   notable_actors: response.data.notable_actors,
-        //   network: response.data.network,
-        //   genre: response.data.genre,
-        //   summary: response.data.summary,
-        //   rating: response.data.rating,
-        //   photo_url: response.data.photo_url
-        // });
+          console.log(response);
+        setShow({
+          id: response.data.id,
+          title: response.data.title,
+          notable_actors: response.data.notable_actors,
+          network: response.data.network,
+          genre: response.data.genre,
+          summary: response.data.summary,
+          rating: response.data.rating,
+          photo_url: response.data.photo_url,
+        });
         setSubmitted(true);
         console.log(response.data);
       })
@@ -83,10 +55,11 @@ export const UpdateShow = ({match}) => {
       });
   };
   const newShow = () => {
-    setCurrentShow(initialShowState);
+    submitShow()
+    setShow(initialShowState);
     setSubmitted(false);
   };
-  return (
+return (
     <div className="submit-form">
           {submitted ? (
             <div>
@@ -94,7 +67,7 @@ export const UpdateShow = ({match}) => {
                 className="alert alert-success alert-dismissible fade show"
                 role="alert"
               >
-                Show Updated!
+                Show Added!
                 <button
                   type="button"
                   className="close"
@@ -105,7 +78,7 @@ export const UpdateShow = ({match}) => {
                 </button>
               </div>
               <button className="btn btn-success" onClick={newShow}>
-                Update
+                Add
               </button>
             </div>
           ) : (
@@ -117,7 +90,6 @@ export const UpdateShow = ({match}) => {
                   className="form-control"
                   id="title"
                   required
-                  value={currentShow.title}
                   onChange={handleShowChange}
                   name="title"
                 />
@@ -128,11 +100,9 @@ export const UpdateShow = ({match}) => {
                   type="text"
                   className="form-control"
                   id="notable_actors"
-                  required
-                  value={currentShow.notable_actors}
+                  require
                   onChange={handleShowChange}
                   name="notable_actors"
-                  default
                 />
               </div>
               <div className="form-group">
@@ -142,10 +112,8 @@ export const UpdateShow = ({match}) => {
                   className="form-control"
                   id="network"
                   required
-                  value={currentShow.network}
                   onChange={handleShowChange}
                   name="network"
-                  default
                 />
               </div>
               <div className="form-group">
@@ -155,10 +123,8 @@ export const UpdateShow = ({match}) => {
                   className="form-control"
                   id="genre"
                   required
-                  value={currentShow.genre}
                   onChange={handleShowChange}
                   name="genre"
-                  default
                 />
               </div>
               <div className="form-group">
@@ -168,10 +134,8 @@ export const UpdateShow = ({match}) => {
                   className="form-control"
                   id="summary"
                   required
-                  value={currentShow.summary}
                   onChange={handleShowChange}
                   name="summary"
-                  default
                 />
               </div>
               <div className="form-group">
@@ -181,10 +145,8 @@ export const UpdateShow = ({match}) => {
                   className="form-control"
                   id="rating"
                   required
-                  value={currentShow.rating}
                   onChange={handleShowChange}
                   name="rating"
-                  default
                 />
               </div>
               <div className="form-group">
@@ -193,13 +155,11 @@ export const UpdateShow = ({match}) => {
                   type="text"
                   className="form-control"
                   id="photo_url"
-                  required
-                  value={currentShow.photo_url}
                   onChange={handleShowChange}
                   name="photo_url"
                 />
               </div>
-              <button onClick={updateShow} className="btn btn-success">
+              <button onClick={submitShow} className="btn btn-success">
                 Submit
               </button>
             </div>
@@ -207,3 +167,5 @@ export const UpdateShow = ({match}) => {
         </div>
   );
 };
+
+export default AddShow;
